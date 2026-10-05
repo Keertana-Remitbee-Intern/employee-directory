@@ -12,13 +12,14 @@ const generateDailyReport = () => {
     const admins = users.filter(
         user => user.role === "admin"
     );
-    const employeesWithPhotos =
-        employees.filter(
-            employee => employee.photo
-        );
     const report = `
 Daily Employee Log Report
---
+-------------------------------
+Date: ${new Date().toISOString()}
+
+Total users: ${users.length}
+Total employees: ${employees.length}
+Total admins: ${admins.length}
 `;
 
     fs.appendFileSync(
@@ -33,6 +34,5 @@ Daily Employee Log Report
         }
     );
 };
-
-
+cron.schedule("0 16 * * *", generateDailyReport);
 module.exports = generateDailyReport;

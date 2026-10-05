@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const users = require("../data/users");
-let nextUserId = 4;
+
 
 exports.signup = async (data) => {
     const existingUser = users.find(
@@ -18,7 +18,7 @@ exports.signup = async (data) => {
     );
 
     const newUser = {
-        id: nextUserId++,
+        id: Math.max(...users.map(user => user.id), 0) + 1,
         name: data.name,
         email: data.email,
         password: hashedPassword,
@@ -57,5 +57,5 @@ exports.login = async (email, password) => {
             expiresIn: "1h"
         }
     );
-    return {token,use};
+    return {token,user};
 };

@@ -1,5 +1,5 @@
 const users = require("../data/users");
-let nextEmployeeId = 4;
+
 
 exports.getAllEmployees = () => {
     return users.filter(
@@ -15,7 +15,7 @@ exports.getEmployeeById = (id) => {
 
 exports.createEmployee = (data) => {
     const employee = {
-        id: nextEmployeeId++,
+        id: Math.max(...users.map(user => user.id), 0) + 1,
         name: data.name,
         email: data.email,
         password: data.password,
