@@ -1,67 +1,93 @@
-const users = require("../data/users");
+const bcrypt = require("bcrypt");
+const { User } = require("../models");
 
-
-exports.getAllEmployees = () => {
-    return users.filter(
-        user => user.role === "employee"
+exports.getAllEmployees = async () => {
+    return User.findAll({
+        where: { role: "employee" },
+        attributes: { exclude: ["password"] },
+        order: [["id", "ASC"]]
+    });
+};
+exports.getEmployeeById = async (id) => {
+    return User.findOne({
+        where: {
+            id,
+            role: "employee"
+        },
+        attributes: { exclude: ["password"] }
+    });
+};
+exports.createEmployee = async (data) => {
+    const hashedPassword = await bcrypt.hash(
+        data.password,
+        10
     );
+    try {
+        return await User.create({
+            name: data.name,
+            email: data.email.trim().toLowerCase(),
+            password: hashedPassword,
+            department: data.department,
+            role: "employee",
+            photo: null
+        });
+    } catch (error) {
+        if (error.name === "SequelizeUniqueConstraintError") {
+            error.statusCode = 409;
+            error.message = "Email already exists";
+        }
+        throw error;
+    }
 };
-
-exports.getEmployeeById = (id) => {
-    return users.find(
-        user => user.id === Number(id) && user.role === "employee"
-    );
-};
-
-exports.createEmployee = (data) => {
-    const employee = {
-        id: Math.max(...users.map(user => user.id), 0) + 1,
-        name: data.name,
-        email: data.email,
-        password: data.password,
-        department: data.department,
-        role: "employee",
-        photo: null
-    };
-    users.push(employee);
-    return employee;
-};
-
-exports.updateEmployee = (id, data) => {
-    const employee = exports.getEmployeeById(id);
+exports.updateEmployee = async (id, data) => {
+    const employee = await User.findOne({
+        where: { id, role: "employee" }
+    });
     if (!employee) {
         return null;
     }
+    const updates = {};
     if (data.name !== undefined) {
-        employee.name = data.name;
+        updates.name = data.name;
     }
     if (data.email !== undefined) {
-        employee.email = data.email;
+        updates.email = data.email.trim().toLowerCase();
     }
     if (data.department !== undefined) {
-        employee.department = data.department;
+        updates.department = data.department;
+    }
+    try {
+        await employee.update(updates);
+    } catch (error) {
+        if (error.name === "SequelizeUniqueConstraintError") {
+            error.statusCode = 409;
+            error.message = "Email already exists";
+        }
+        throw error;
     }
     return employee;
 };
 
-exports.deleteEmployee = (id) => {
-    const index = users.findIndex(
-        user =>
-            user.id === Number(id) &&
-            user.role === "employee"
-    );
-    if (index === -1) {
+exports.deleteEmployee = async (id) => {
+    const employee = await User.findOne({
+        where: { id, role: "employee" }
+    });
+    if (!employee) {
         return false;
     }
-    users.splice(index, 1);
+    await employee.destroy();
     return true;
 };
 
-exports.updateEmployeePhoto = (id, photoPath) => {
-    const employee = exports.getEmployeeById(id);
+exports.updateEmployeePhoto = async (id, photoPath) => {
+    const employee = await User.findOne({
+        where: { id, role: "employee" }
+    });
     if (!employee) {
         return null;
     }
-    employee.photo = photoPath;
+    await employee.update({
+        photo: photoPath
+    });
     return employee;
 };

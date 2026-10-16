@@ -1,41 +1,44 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const users = require("../data/users");
-
+const { User } = require("../models");
 
 exports.signup = async (data) => {
-    const existingUser = users.find(
-        user => user.email === data.email
-    );
+    const email = data.email.trim().toLowerCase();
+    const existingUser = await User.findOne({
+        where: { email }
+    });
     if (existingUser) {
-        return {
-            error: "USER_EXISTS"
-        };
+        return { error: "USER_EXISTS" };
     }
     const hashedPassword = await bcrypt.hash(
         data.password,
         10
     );
-
-    const newUser = {
-        id: Math.max(...users.map(user => user.id), 0) + 1,
-        name: data.name,
-        email: data.email,
-        password: hashedPassword,
-        department: data.department,
-        role: "employee",
-        photo: null
-    };
-    users.push(newUser);
-    return {
-        user: newUser
-    };
+    try {
+        const newUser = await User.create({
+            name: data.name,
+            email,
+            password: hashedPassword,
+            department: data.department,
+            role: "employee",
+            photo: null
+        });
+        return { user: newUser };
+    } catch (error) {
+        // Handles concurrent requests for the same email.
+        if (error.name === "SequelizeUniqueConstraintError") {
+            return { error: "USER_EXISTS" };
+        }
+        throw error;
+    }
 };
 
 exports.login = async (email, password) => {
-    const user = users.find(
-        user => user.email === email
-    );
+    const user = await User.findOne({
+        where: {
+            email: email.trim().toLowerCase()
+        }
+    });
     if (!user) {
         return null;
     }
@@ -57,5 +60,5 @@ exports.login = async (email, password) => {
             expiresIn: "1h"
         }
     );
-    return {token,user};
+    return { token, user };
 };
