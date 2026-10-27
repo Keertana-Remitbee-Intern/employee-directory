@@ -123,3 +123,27 @@
 {"employeeId":"2","level":"info","message":"Employee deleted","timestamp":"2026-10-16T10:14:49.771Z"}
 {"error":"Access denied for user 'root'@'localhost' (using password: NO)","level":"error","message":"Failed to generate daily log report","timestamp":"2026-10-27T05:23:42.976Z"}
 {"employeeCount":2,"level":"info","message":"Daily log report generated","timestamp":"2026-10-27T05:24:43.008Z"}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/login","timestamp":"2026-10-27T06:43:44.285Z"}
+{"email":"admin@gmail.com","level":"info","message":"User logged in","timestamp":"2026-10-27T06:43:44.360Z","userId":1}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/login","timestamp":"2026-10-27T06:44:32.039Z"}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/login","timestamp":"2026-10-27T06:45:00.879Z"}
+{"email":"kamal@gmail.com","level":"info","message":"User logged in","timestamp":"2026-10-27T06:45:00.951Z","userId":4}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/login","timestamp":"2026-10-27T07:21:43.820Z"}
+{"email":"admin@gmail.com","level":"info","message":"User logged in","timestamp":"2026-10-27T07:21:43.893Z","userId":1}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/signup","timestamp":"2026-10-27T09:43:59.207Z"}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/signup","timestamp":"2026-10-27T09:57:31.850Z"}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/signup","timestamp":"2026-10-27T09:58:20.718Z"}
+{"email":"ram@gmail.com","level":"info","message":"New user registered","timestamp":"2026-10-27T09:58:20.811Z","userId":5}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/signup","timestamp":"2026-10-27T10:10:30.330Z"}
+{"email":"kamal@gmail.com","level":"info","message":"New user registered","timestamp":"2026-10-27T10:10:30.393Z","userId":6}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/signup","timestamp":"2026-10-27T10:11:24.780Z"}
+{"email":"arun@gamil.com","level":"info","message":"New user registered","timestamp":"2026-10-27T10:11:24.865Z","userId":7}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/signup","timestamp":"2026-10-27T10:12:10.983Z"}
+{"email":"priya@gmail.com","level":"info","message":"New user registered","timestamp":"2026-10-27T10:12:11.060Z","userId":8}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/signup","timestamp":"2026-10-27T10:12:40.760Z"}
+{"email":"rahul@gmail.com","level":"info","message":"New user registered","timestamp":"2026-10-27T10:12:40.846Z","userId":9}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/signup","timestamp":"2026-10-27T10:13:07.727Z"}
+{"email":"divya@gmail.com","level":"info","message":"New user registered","timestamp":"2026-10-27T10:13:07.818Z","userId":10}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/login","timestamp":"2026-10-27T10:28:23.149Z"}
+{"email":"admin@gmail.com","level":"info","message":"User logged in","timestamp":"2026-10-27T10:28:23.232Z","userId":1}
+{"employeeCount":5,"level":"info","message":"Daily log report generated","timestamp":"2026-10-27T10:30:00.025Z"}

@@ -20,11 +20,6 @@ exports.signupValidator = [
         .withMessage("Password is required")
         .isLength({ min: 6 })
         .withMessage("Password must be at least 6 characters"),
-
-    body("department")
-        .trim()
-        .notEmpty()
-        .withMessage("Department is required")
 ];
 
 exports.loginValidator = [
