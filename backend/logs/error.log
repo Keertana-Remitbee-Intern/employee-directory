@@ -1,0 +1,8 @@
+{"level":"error","message":"Application error use is not defined","method":"POST","path":"/auth/login","timestamp":"2026-10-05T08:31:36.085Z"}
+{"level":"error","message":"Application error use is not defined","method":"POST","path":"/auth/login","timestamp":"2026-10-05T08:31:38.014Z"}
+{"level":"error","message":"Application error use is not defined","method":"POST","path":"/auth/login","timestamp":"2026-10-05T08:53:49.902Z"}
+{"level":"error","message":"Application error use is not defined","method":"POST","path":"/auth/login","timestamp":"2026-10-05T08:57:24.100Z"}
+{"level":"error","message":"Application error use is not defined","method":"POST","path":"/auth/login","timestamp":"2026-10-05T09:17:12.275Z"}
+{"level":"error","message":"Application error Expected double-quoted property name in JSON at position 50 (line 5 column 1)","method":"PATCH","path":"/api/employees/4","timestamp":"2026-10-05T10:17:56.034Z"}
+{"level":"error","message":"Application error Expected double-quoted property name in JSON at position 39 (line 5 column 1)","method":"PATCH","path":"/api/employees/4","timestamp":"2026-10-05T10:18:27.306Z"}
+{"error":"Access denied for user 'root'@'localhost' (using password: NO)","level":"error","message":"Failed to generate daily log report","timestamp":"2026-10-27T05:23:42.976Z"}

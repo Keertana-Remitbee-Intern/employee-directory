@@ -1,0 +1,125 @@
+{"level":"info","message":"Incoming request","method":"GET","path":"/","timestamp":"2026-10-05T05:44:13.938Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/favicon.ico","timestamp":"2026-10-05T05:44:14.036Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/","timestamp":"2026-10-05T05:46:27.544Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/","timestamp":"2026-10-05T05:46:29.097Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/","timestamp":"2026-10-05T05:48:26.610Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/","timestamp":"2026-10-05T05:53:45.812Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/","timestamp":"2026-10-05T07:19:09.186Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/","timestamp":"2026-10-05T07:19:57.825Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs","timestamp":"2026-10-05T07:20:06.231Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/","timestamp":"2026-10-05T07:20:06.235Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui.css","timestamp":"2026-10-05T07:20:06.245Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-bundle.js","timestamp":"2026-10-05T07:20:06.250Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-standalone-preset.js","timestamp":"2026-10-05T07:20:06.251Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-init.js","timestamp":"2026-10-05T07:20:06.252Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/favicon-16x16.png","timestamp":"2026-10-05T07:20:06.723Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/","timestamp":"2026-10-05T07:20:28.046Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui.css","timestamp":"2026-10-05T07:20:28.095Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-bundle.js","timestamp":"2026-10-05T07:20:28.099Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-standalone-preset.js","timestamp":"2026-10-05T07:20:28.103Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-init.js","timestamp":"2026-10-05T07:20:28.103Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/favicon-32x32.png","timestamp":"2026-10-05T07:20:28.274Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/","timestamp":"2026-10-05T07:26:25.153Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui.css","timestamp":"2026-10-05T07:26:25.186Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-bundle.js","timestamp":"2026-10-05T07:26:25.194Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-standalone-preset.js","timestamp":"2026-10-05T07:26:25.196Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-init.js","timestamp":"2026-10-05T07:26:25.198Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/favicon-32x32.png","timestamp":"2026-10-05T07:26:25.434Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/","timestamp":"2026-10-05T07:26:39.120Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui.css","timestamp":"2026-10-05T07:26:39.210Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-bundle.js","timestamp":"2026-10-05T07:26:39.214Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-standalone-preset.js","timestamp":"2026-10-05T07:26:39.217Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-init.js","timestamp":"2026-10-05T07:26:39.218Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/favicon-32x32.png","timestamp":"2026-10-05T07:26:39.377Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/","timestamp":"2026-10-05T08:21:56.298Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui.css","timestamp":"2026-10-05T08:21:56.356Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-bundle.js","timestamp":"2026-10-05T08:21:56.360Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-standalone-preset.js","timestamp":"2026-10-05T08:21:56.368Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-init.js","timestamp":"2026-10-05T08:21:56.370Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/favicon-32x32.png","timestamp":"2026-10-05T08:21:56.613Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/","timestamp":"2026-10-05T08:23:41.703Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui.css","timestamp":"2026-10-05T08:23:41.754Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-bundle.js","timestamp":"2026-10-05T08:23:41.766Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-standalone-preset.js","timestamp":"2026-10-05T08:23:41.769Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-init.js","timestamp":"2026-10-05T08:23:41.771Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/favicon-32x32.png","timestamp":"2026-10-05T08:23:41.949Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/","timestamp":"2026-10-05T08:29:32.977Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui.css","timestamp":"2026-10-05T08:29:33.048Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-bundle.js","timestamp":"2026-10-05T08:29:33.062Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-standalone-preset.js","timestamp":"2026-10-05T08:29:33.065Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-init.js","timestamp":"2026-10-05T08:29:33.066Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/favicon-32x32.png","timestamp":"2026-10-05T08:29:33.249Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/","timestamp":"2026-10-05T08:30:49.576Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui.css","timestamp":"2026-10-05T08:30:49.623Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-bundle.js","timestamp":"2026-10-05T08:30:49.635Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-standalone-preset.js","timestamp":"2026-10-05T08:30:49.644Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-init.js","timestamp":"2026-10-05T08:30:49.647Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/favicon-32x32.png","timestamp":"2026-10-05T08:30:49.800Z"}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/login","timestamp":"2026-10-05T08:31:36.018Z"}
+{"level":"error","message":"Application error use is not defined","method":"POST","path":"/auth/login","timestamp":"2026-10-05T08:31:36.085Z"}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/login","timestamp":"2026-10-05T08:31:37.949Z"}
+{"level":"error","message":"Application error use is not defined","method":"POST","path":"/auth/login","timestamp":"2026-10-05T08:31:38.014Z"}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/login","timestamp":"2026-10-05T08:53:49.833Z"}
+{"level":"error","message":"Application error use is not defined","method":"POST","path":"/auth/login","timestamp":"2026-10-05T08:53:49.902Z"}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/login","timestamp":"2026-10-05T08:57:24.032Z"}
+{"level":"error","message":"Application error use is not defined","method":"POST","path":"/auth/login","timestamp":"2026-10-05T08:57:24.100Z"}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/login","timestamp":"2026-10-05T09:17:12.204Z"}
+{"level":"error","message":"Application error use is not defined","method":"POST","path":"/auth/login","timestamp":"2026-10-05T09:17:12.275Z"}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/login","timestamp":"2026-10-05T09:17:26.213Z"}
+{"email":"admin@gmail.com","level":"info","message":"User logged in","timestamp":"2026-10-05T09:17:26.280Z","userId":1}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/signup","timestamp":"2026-10-05T09:47:17.678Z"}
+{"email":"test@gmail.com","level":"info","message":"New user registered","timestamp":"2026-10-05T09:47:17.743Z","userId":4}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api/employees","timestamp":"2026-10-05T09:47:55.369Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api/employees/2","timestamp":"2026-10-05T09:50:23.636Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api/employees/1","timestamp":"2026-10-05T09:50:30.222Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api/employees/3","timestamp":"2026-10-05T09:50:36.329Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api/employees/4","timestamp":"2026-10-05T09:50:41.509Z"}
+{"level":"info","message":"Incoming request","method":"POST","path":"/api/employees","timestamp":"2026-10-05T09:51:11.180Z"}
+{"employeeId":4,"level":"info","message":"Employee created","timestamp":"2026-10-05T09:51:11.256Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/","timestamp":"2026-10-05T10:10:09.381Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui.css","timestamp":"2026-10-05T10:10:09.473Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-bundle.js","timestamp":"2026-10-05T10:10:09.483Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-standalone-preset.js","timestamp":"2026-10-05T10:10:09.488Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-init.js","timestamp":"2026-10-05T10:10:09.492Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/favicon-32x32.png","timestamp":"2026-10-05T10:10:09.724Z"}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/signup","timestamp":"2026-10-05T10:13:53.346Z"}
+{"email":"test@gmail.com","level":"info","message":"New user registered","timestamp":"2026-10-05T10:13:53.417Z","userId":4}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/login","timestamp":"2026-10-05T10:14:18.865Z"}
+{"email":"admin@gmail.com","level":"info","message":"User logged in","timestamp":"2026-10-05T10:14:18.922Z","userId":1}
+{"level":"info","message":"Incoming request","method":"POST","path":"/api/employees","timestamp":"2026-10-05T10:14:53.681Z"}
+{"employeeId":5,"level":"info","message":"Employee created","timestamp":"2026-10-05T10:14:53.743Z"}
+{"level":"info","message":"Incoming request","method":"PATCH","path":"/api/employees/4","timestamp":"2026-10-05T10:17:28.700Z"}
+{"employeeId":4,"level":"info","message":"Employee updated","timestamp":"2026-10-05T10:17:28.703Z"}
+{"level":"error","message":"Application error Expected double-quoted property name in JSON at position 50 (line 5 column 1)","method":"PATCH","path":"/api/employees/4","timestamp":"2026-10-05T10:17:56.034Z"}
+{"level":"error","message":"Application error Expected double-quoted property name in JSON at position 39 (line 5 column 1)","method":"PATCH","path":"/api/employees/4","timestamp":"2026-10-05T10:18:27.306Z"}
+{"level":"info","message":"Incoming request","method":"DELETE","path":"/api/employees/4","timestamp":"2026-10-05T10:19:09.382Z"}
+{"employeeId":"4","level":"info","message":"Employee deleted","timestamp":"2026-10-05T10:19:09.383Z"}
+{"level":"info","message":"Incoming request","method":"POST","path":"/api/employees/2/photo","timestamp":"2026-10-05T10:20:23.150Z"}
+{"employeeId":2,"filename":"1791195623156-scenery pic.jpg","level":"info","message":"Profile photo uploaded","timestamp":"2026-10-05T10:20:23.160Z"}
+{"level":"info","message":"Incoming request","method":"POST","path":"/api/employees/2/photo","timestamp":"2026-10-05T10:20:24.557Z"}
+{"employeeId":2,"filename":"1791195624559-scenery pic.jpg","level":"info","message":"Profile photo uploaded","timestamp":"2026-10-05T10:20:24.561Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/","timestamp":"2026-10-16T06:20:54.427Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/","timestamp":"2026-10-16T09:26:59.887Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui.css","timestamp":"2026-10-16T09:26:59.945Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-bundle.js","timestamp":"2026-10-16T09:26:59.948Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-standalone-preset.js","timestamp":"2026-10-16T09:26:59.953Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-init.js","timestamp":"2026-10-16T09:26:59.953Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/favicon-32x32.png","timestamp":"2026-10-16T09:27:00.320Z"}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/login","timestamp":"2026-10-16T09:27:27.061Z"}
+{"email":"admin@gmail.com","level":"info","message":"User logged in","timestamp":"2026-10-16T09:27:27.135Z","userId":1}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api/employees","timestamp":"2026-10-16T09:30:13.795Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs?utm_source=chatgpt.com","timestamp":"2026-10-16T09:31:21.677Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/?utm_source=chatgpt.com","timestamp":"2026-10-16T09:31:21.691Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui.css","timestamp":"2026-10-16T09:31:21.737Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-bundle.js","timestamp":"2026-10-16T09:31:21.741Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-standalone-preset.js","timestamp":"2026-10-16T09:31:21.746Z"}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api-docs/swagger-ui-init.js","timestamp":"2026-10-16T09:31:21.747Z"}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/signup","timestamp":"2026-10-16T09:34:54.458Z"}
+{"email":"kamal@gmail.com","level":"info","message":"New user registered","timestamp":"2026-10-16T09:34:54.553Z","userId":4}
+{"level":"info","message":"Incoming request","method":"POST","path":"/auth/login","timestamp":"2026-10-16T09:35:19.945Z"}
+{"email":"admin@gmail.com","level":"info","message":"User logged in","timestamp":"2026-10-16T09:35:20.015Z","userId":1}
+{"level":"info","message":"Incoming request","method":"GET","path":"/api/employees","timestamp":"2026-10-16T09:36:08.758Z"}
+{"level":"info","message":"Incoming request","method":"DELETE","path":"/api/employees/2","timestamp":"2026-10-16T10:14:49.725Z"}
+{"employeeId":"2","level":"info","message":"Employee deleted","timestamp":"2026-10-16T10:14:49.771Z"}
+{"error":"Access denied for user 'root'@'localhost' (using password: NO)","level":"error","message":"Failed to generate daily log report","timestamp":"2026-10-27T05:23:42.976Z"}
+{"employeeCount":2,"level":"info","message":"Daily log report generated","timestamp":"2026-10-27T05:24:43.008Z"}
