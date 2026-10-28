@@ -19,13 +19,11 @@ exports.signup = async (data) => {
             name: data.name,
             email,
             password: hashedPassword,
-            department: data.department,
             role: "employee",
             photo: null
         });
         return { user: newUser };
     } catch (error) {
-        // Handles concurrent requests for the same email.
         if (error.name === "SequelizeUniqueConstraintError") {
             return { error: "USER_EXISTS" };
         }
