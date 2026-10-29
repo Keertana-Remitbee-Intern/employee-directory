@@ -1,5 +1,4 @@
 const { body } = require("express-validator");
-
 exports.createEmployeeValidator = [
     body("name")
         .trim()
@@ -21,10 +20,23 @@ exports.createEmployeeValidator = [
         .isLength({ min: 6 })
         .withMessage("Password must be at least 6 characters"),
 
-    body("department")
-        .trim()
+    body("department_id")
         .notEmpty()
         .withMessage("Department is required")
+        .isInt({ min: 1 })
+        .withMessage("Department ID must be a positive integer"),
+
+    body("salary")
+        .notEmpty()
+        .withMessage("Salary is required")
+        .isFloat({ min: 0 })
+        .withMessage("Salary must be a non-negative number"),
+
+    body("joining_date")
+        .notEmpty()
+        .withMessage("Joining date is required")
+        .isISO8601({ strict: true })
+        .withMessage("Joining date must be a valid date")
 ];
 
 exports.updateEmployeeValidator = [
@@ -40,9 +52,18 @@ exports.updateEmployeeValidator = [
         .isEmail()
         .withMessage("Enter a valid email"),
 
-    body("department")
+    body("department_id")
         .optional()
-        .trim()
-        .notEmpty()
-        .withMessage("Department cannot be empty")
+        .isInt({ min: 1 })
+        .withMessage("Department ID must be a positive integer"),
+
+    body("salary")
+        .optional()
+        .isFloat({ min: 0 })
+        .withMessage("Salary must be a non-negative number"),
+
+    body("joining_date")
+        .optional()
+        .isISO8601({ strict: true })
+        .withMessage("Joining date must be a valid date")
 ];

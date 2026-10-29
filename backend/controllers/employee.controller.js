@@ -93,7 +93,11 @@ exports.updateEmployee = async (req, res, next) => {
                 message: "Email already exists"
             });
         }
-
+        if (error.statusCode) {
+            return res.status(error.statusCode).json({
+                message: error.message
+            });
+        }
         next(error);
     }
 };
