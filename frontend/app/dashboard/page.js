@@ -19,6 +19,9 @@ import "./dashboard.css";
 
 export default function Dashboard() {
     const [user, setUser] = useState(null);
+    const [uploadingPhoto, setUploadingPhoto] = useState(false);
+    const [photoMessage, setPhotoMessage] = useState("");
+    const [photoError, setPhotoError] = useState("");
     const [activePage, setActivePage] = useState("Overview");
     const [dashboardData, setDashboardData] = useState(null);
     const [dashboardError, setDashboardError] = useState("");
@@ -36,6 +39,23 @@ export default function Dashboard() {
     const [myLeavesMessage, setMyLeavesMessage] = useState("");
     const [submittingLeave, setSubmittingLeave] = useState(false);
     const [leaveForm, setLeaveForm] = useState({leave_type: "Casual",start_date: "",end_date: ""});
+    const [employees, setEmployees] = useState([]);
+    const [departments, setDepartments] = useState([]);
+    const [employeeLoading, setEmployeeLoading] = useState(false);
+    const [employeeError, setEmployeeError] = useState("");
+    const [employeeMessage, setEmployeeMessage] = useState("");
+    const [employeeSearch, setEmployeeSearch] = useState("");
+    const [showEmployeeForm, setShowEmployeeForm] = useState(false);
+    const [editingEmployee, setEditingEmployee] = useState(null);
+    const [savingEmployee, setSavingEmployee] = useState(false);
+    const [employeeForm, setEmployeeForm] = useState({
+        name: "",
+        email: "",
+        password: "",
+        department_id: "",
+        salary: "",
+        joining_date: ""
+    });
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -61,7 +81,6 @@ export default function Dashboard() {
         }
 
         const token = localStorage.getItem("token");
-
         async function loadDashboard() {
             try {
                 const response = await fetch(
@@ -74,7 +93,6 @@ export default function Dashboard() {
                 );
 
                 const data = await response.json();
-
                 if (!response.ok) {
                     throw new Error(
                         data.message || "Unable to load dashboard data"
@@ -93,6 +111,68 @@ export default function Dashboard() {
         loadDashboard();
     }, [user, activePage]);
 
+    async function handleProfilePhotoUpload(event) {
+        const file = event.target.files?.[0];
+        event.target.value = "";
+
+        if (!file) {
+            return;
+        }
+        setPhotoMessage("");
+        setPhotoError("");
+
+        if (!file.type.startsWith("image/")) {
+            setPhotoError("Please select an image file.");
+            return;
+        }
+
+        if (file.size > 2 * 1024 * 1024) {
+            setPhotoError("Image size must be 2 MB or less.");
+            return;
+        }
+
+        const token = localStorage.getItem("token");
+        const formData = new FormData();
+
+        formData.append("photo", file);
+        setUploadingPhoto(true);
+
+        try {
+            const response = await fetch(
+                "http://localhost:3000/auth/profile/photo",
+                {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    },
+                    body: formData
+                }
+            );
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(
+                    data.message || "Unable to upload profile picture."
+                );
+            }
+
+            const updatedUser = {
+                ...user,
+                ...data.user
+            };
+
+            setUser(updatedUser);
+            localStorage.setItem("user", JSON.stringify(updatedUser));
+
+            setPhotoMessage("Profile picture updated successfully.");
+        } catch (error) {
+            setPhotoError(
+                error.message || "Unable to upload profile picture."
+            );
+        } finally {
+            setUploadingPhoto(false);
+        }
+    }
 
     async function loadLeaveRequests() {
         const token = localStorage.getItem("token");
@@ -130,9 +210,7 @@ export default function Dashboard() {
     }
     useEffect(() => {
         if (
-            user &&
-            user.role?.toLowerCase() === "employee" &&
-            activePage === "My Leaves"
+            user && user.role?.toLowerCase() === "employee" && activePage === "My Leaves"
         ) {
             loadMyLeaves();
         }
@@ -140,13 +218,200 @@ export default function Dashboard() {
 
     useEffect(() => {
         if (
-            user &&
-            user.role?.toLowerCase() === "admin" &&
-            activePage === "Leave Requests"
+            user && user.role?.toLowerCase() === "admin" && activePage === "Leave Requests"
         ) {
             loadLeaveRequests();
         }
     }, [user, activePage]);
+
+    useEffect(() => {
+        if (
+            user && user.role?.toLowerCase() === "admin" && activePage === "Employees"
+        ) {
+            loadEmployees();
+        }
+    }, [user, activePage]);
+
+    async function loadEmployees() {
+        const token = localStorage.getItem("token");
+
+        setEmployeeLoading(true);
+        setEmployeeError("");
+
+        try {
+            const [employeeResponse, departmentResponse] = await Promise.all([
+                fetch("http://localhost:3000/api/employees", {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }),
+                fetch("http://localhost:3000/api/departments", {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+            ]);
+
+            const employeeData = await employeeResponse.json();
+            const departmentData = await departmentResponse.json();
+
+            if (!employeeResponse.ok) {
+                throw new Error(
+                    employeeData.message || "Unable to load employees."
+                );
+            }
+
+            if (!departmentResponse.ok) {
+                throw new Error(
+                    departmentData.message || "Unable to load departments."
+                );
+            }
+
+            setEmployees(employeeData.employees || []);
+            setDepartments(departmentData.departments || []);
+        } catch (error) {
+            setEmployeeError(
+                error.message || "Unable to load employee records."
+            );
+        } finally {
+            setEmployeeLoading(false);
+        }
+    }
+
+    function openAddEmployeeForm() {
+        setEditingEmployee(null);
+
+        setEmployeeForm({
+            name: "",
+            email: "",
+            password: "",
+            department_id: "",
+            salary: "",
+            joining_date: ""
+        });
+
+        setEmployeeError("");
+        setEmployeeMessage("");
+        setShowEmployeeForm(true);
+    }
+
+    function openEditEmployeeForm(employee) {
+        setEditingEmployee(employee);
+
+        setEmployeeForm({
+            name: employee.name || "",
+            email: employee.email || "",
+            password: "",
+            department_id: String(employee.department_id || ""),
+            salary: employee.salary ?? "",
+            joining_date: employee.joining_date || ""
+        });
+
+        setEmployeeError("");
+        setEmployeeMessage("");
+        setShowEmployeeForm(true);
+    }
+
+    async function handleEmployeeSubmit(event) {
+        event.preventDefault();
+
+        const token = localStorage.getItem("token");
+
+        setSavingEmployee(true);
+        setEmployeeError("");
+        setEmployeeMessage("");
+
+        const payload = {
+            name: employeeForm.name.trim(),
+            email: employeeForm.email.trim(),
+            department_id: Number(employeeForm.department_id),
+            salary: Number(employeeForm.salary),
+            joining_date: employeeForm.joining_date
+        };
+
+        if (!editingEmployee) {
+            payload.password = employeeForm.password;
+        }
+
+        try {
+            const url = editingEmployee
+                ? `http://localhost:3000/api/employees/${editingEmployee.id}`
+                : "http://localhost:3000/api/employees";
+
+            const response = await fetch(url, {
+                method: editingEmployee ? "PATCH" : "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(
+                    data.message || "Unable to save employee details."
+                );
+            }
+
+            setEmployeeMessage(
+                editingEmployee
+                    ? "Employee updated successfully."
+                    : "Employee added successfully."
+            );
+
+            setShowEmployeeForm(false);
+            await loadEmployees();
+        } catch (error) {
+            setEmployeeError(
+                error.message || "Unable to save employee details."
+            );
+        } finally {
+            setSavingEmployee(false);
+        }
+    }
+
+    async function handleDeleteEmployee(employee) {
+        const confirmed = window.confirm(
+            `Are you sure you want to delete ${employee.name}?`
+        );
+
+        if (!confirmed) {
+            return;
+        }
+
+        const token = localStorage.getItem("token");
+
+        setEmployeeError("");
+        setEmployeeMessage("");
+
+        try {
+            const response = await fetch(
+                `http://localhost:3000/api/employees/${employee.id}`,
+                {
+                    method: "DELETE",
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(
+                    data.message || "Unable to delete employee."
+                );
+            }
+
+            setEmployeeMessage("Employee deleted successfully.");
+            await loadEmployees();
+        } catch (error) {
+            setEmployeeError(
+                error.message || "Unable to delete employee."
+            );
+        }
+    }
 
     async function loadMyLeaves() {
         const token = localStorage.getItem("token");
@@ -326,7 +591,7 @@ export default function Dashboard() {
                         ? { ...leave, status }
                         : leave
                 );
-
+                
                 return {
                     ...previousData,
                     summary,
@@ -588,18 +853,54 @@ export default function Dashboard() {
                     </div>
 
                     <section className="profile-card">
+                        
+                       
                         <div className="profile-header">
-                            <div className="profile-avatar">
-                                {user.name?.charAt(0).toUpperCase()}
+                            <div className="profile-photo-section">
+                                <div className="profile-avatar">
+                                    {user.photo ? (
+                                        <img
+                                            src={`http://localhost:3000${user.photo}`}
+                                            alt="Profile"
+                                        />
+                                    ) : (
+                                        user.name?.charAt(0).toUpperCase()
+                                    )}
+                                </div>
+
+                                <label className="profile-photo-button">
+                                    {uploadingPhoto
+                                        ? "Uploading..."
+                                        : user.photo
+                                            ? "Change Photo"
+                                            : "Upload Photo"}
+                                    <input
+                                        type="file"
+                                        accept="image/png,image/jpeg,image/webp"
+                                        onChange={handleProfilePhotoUpload}
+                                        disabled={uploadingPhoto}
+                                        hidden
+                                    />
+                                </label>
                             </div>
+
                             <div>
                                 <h2>{user.name}</h2>
                                 <p>{user.email}</p>
                                 <span className="role-badge">
                                     {user.role || "Employee"}
                                 </span>
+
+                                {photoMessage && (
+                                    <p className="photo-success">{photoMessage}</p>
+                                )}
+
+                                {photoError && (
+                                    <p className="photo-error">{photoError}</p>
+                                )}
                             </div>
                         </div>
+
 
                         <div className="profile-details">
                             <Detail label="Full Name" value={user.name} />
@@ -1044,31 +1345,360 @@ export default function Dashboard() {
             );
         }
 
-        if (isAdmin) {
-            const pageDetails = {
-                Employees: {
-                    description: "View and manage employee records.",
-                    message: "Employee management will be available here."
-                },
-                Departments: {
-                    description: "View your organization's departments.",
-                    message: "Department management will be available here."
-                }
-            };
+        if (isAdmin && activePage === "Employees") {
+            const filteredEmployees = employees.filter((employee) =>
+                [employee.name, employee.email, employee.department]
+                    .some((value) =>
+                        String(value || "")
+                            .toLowerCase()
+                            .includes(employeeSearch.trim().toLowerCase())
+                    )
+            );
 
-            const details = pageDetails[activePage];
+            return (
+                <>
+                    <div className="page-heading">
+                        <div>
+                            <h1>Employees</h1>
+                            <p>View and manage your organization's employees.</p>
+                        </div>
 
-            if (details) {
-                return (
-                    <PlaceholderPage
-                        title={activePage}
-                        description={details.description}
-                        message={details.message}
-                    />
-                );
-            }
+                        <button
+                            type="button"
+                            className="employee-add-button"
+                            onClick={openAddEmployeeForm}
+                        >
+                            + Add Employee
+                        </button>
+                    </div>
+
+                    {employeeMessage && (
+                        <p className="employee-alert employee-alert-success">
+                            {employeeMessage}
+                        </p>
+                    )}
+
+                    {employeeError && (
+                        <p className="employee-alert employee-alert-error">
+                            {employeeError}
+                        </p>
+                    )}
+
+                    <section className="content-card employee-management-card">
+                        <div className="employee-toolbar">
+                            <div className="employee-search">
+                                <Search size={18} />
+                                <input
+                                    type="text"
+                                    placeholder="Search by name, email or department..."
+                                    value={employeeSearch}
+                                    onChange={(event) =>
+                                        setEmployeeSearch(event.target.value)
+                                    }
+                                />
+                            </div>
+
+                            <button
+                                type="button"
+                                className="leave-refresh-button"
+                                onClick={loadEmployees}
+                                disabled={employeeLoading}
+                            >
+                                <RefreshCw size={16} />
+                                Refresh
+                            </button>
+                        </div>
+
+                        <div className="employee-count">
+                            {filteredEmployees.length} employee
+                            {filteredEmployees.length === 1 ? "" : "s"}
+                        </div>
+
+                        {employeeLoading ? (
+                            <p className="dashboard-message">
+                                Loading employees...
+                            </p>
+                        ) : (
+                            <div className="recent-leave-table-wrap">
+                                <table className="recent-leave-table employee-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Employee</th>
+                                            <th>Email</th>
+                                            <th>Department</th>
+                                            <th>Role</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {filteredEmployees.map((employee) => (
+                                            <tr key={employee.id}>
+                                                <td>
+                                                    <div className="employee-name-cell">
+                                                        <div className="employee-table-avatar">
+                                                            {employee.photo ? (
+                                                                <img
+                                                                    src={`http://localhost:3000${employee.photo}`}
+                                                                    alt={employee.name}
+                                                                />
+                                                            ) : (
+                                                                employee.name
+                                                                    ?.charAt(0)
+                                                                    .toUpperCase()
+                                                            )}
+                                                        </div>
+
+                                                        <span>{employee.name}</span>
+                                                    </div>
+                                                </td>
+
+                                                <td>{employee.email}</td>
+                                                <td>{employee.department || "—"}</td>
+                                                <td>
+                                                    <span className="role-badge">
+                                                        {employee.role || "Employee"}
+                                                    </span>
+                                                </td>
+
+                                                <td>
+                                                    <div className="employee-actions">
+                                                        <button
+                                                            type="button"
+                                                            className="employee-edit-button"
+                                                            onClick={() =>
+                                                                openEditEmployeeForm(employee)
+                                                            }
+                                                        >
+                                                            Edit
+                                                        </button>
+
+                                                        <button
+                                                            type="button"
+                                                            className="employee-delete-button"
+                                                            onClick={() =>
+                                                                handleDeleteEmployee(employee)
+                                                            }
+                                                        >
+                                                            Delete
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
+
+                                        {filteredEmployees.length === 0 && (
+                                            <tr>
+                                                <td
+                                                    colSpan={5}
+                                                    className="leave-empty-cell"
+                                                >
+                                                    {employees.length > 0
+                                                        ? "No employees match your search."
+                                                        : "No employees found. Add your first employee."}
+                                                </td>
+                                            </tr>
+                                        )}
+                                    </tbody>
+                                </table>
+                            </div>
+                        )}
+                    </section>
+
+                    {showEmployeeForm && (
+                        <div className="employee-modal-overlay">
+                            <section className="employee-modal">
+                                <div className="employee-modal-heading">
+                                    <div>
+                                        <h2>
+                                            {editingEmployee
+                                                ? "Edit Employee"
+                                                : "Add Employee"}
+                                        </h2>
+                                        <p>
+                                            {editingEmployee
+                                                ? "Update employee information."
+                                                : "Enter the details to create an employee account."}
+                                        </p>
+                                    </div>
+
+                                    <button
+                                        type="button"
+                                        className="employee-modal-close"
+                                        onClick={() => setShowEmployeeForm(false)}
+                                    >
+                                        <X size={20} />
+                                    </button>
+                                </div>
+
+                                <form
+                                    className="employee-form"
+                                    onSubmit={handleEmployeeSubmit}
+                                >
+                                    <div className="employee-form-field">
+                                        <label htmlFor="employee-name">
+                                            Full Name
+                                        </label>
+                                        <input
+                                            id="employee-name"
+                                            type="text"
+                                            value={employeeForm.name}
+                                            onChange={(event) =>
+                                                setEmployeeForm((previous) => ({
+                                                    ...previous,
+                                                    name: event.target.value
+                                                }))
+                                            }
+                                            required
+                                        />
+                                    </div>
+
+                                    <div className="employee-form-field">
+                                        <label htmlFor="employee-email">
+                                            Email Address
+                                        </label>
+                                        <input
+                                            id="employee-email"
+                                            type="email"
+                                            value={employeeForm.email}
+                                            onChange={(event) =>
+                                                setEmployeeForm((previous) => ({
+                                                    ...previous,
+                                                    email: event.target.value
+                                                }))
+                                            }
+                                            required
+                                        />
+                                    </div>
+
+                                    {!editingEmployee && (
+                                        <div className="employee-form-field">
+                                            <label htmlFor="employee-password">
+                                                Temporary Password
+                                            </label>
+                                            <input
+                                                id="employee-password"
+                                                type="password"
+                                                value={employeeForm.password}
+                                                onChange={(event) =>
+                                                    setEmployeeForm((previous) => ({
+                                                        ...previous,
+                                                        password: event.target.value
+                                                    }))
+                                                }
+                                                minLength={6}
+                                                required
+                                            />
+                                        </div>
+                                    )}
+
+                                    <div className="employee-form-field">
+                                        <label htmlFor="employee-department">
+                                            Department
+                                        </label>
+                                        <select
+                                            id="employee-department"
+                                            value={employeeForm.department_id}
+                                            onChange={(event) =>
+                                                setEmployeeForm((previous) => ({
+                                                    ...previous,
+                                                    department_id: event.target.value
+                                                }))
+                                            }
+                                            required
+                                        >
+                                            <option value="">
+                                                Select Department
+                                            </option>
+
+                                            {departments.map((department) => (
+                                                <option
+                                                    key={department.department_id}
+                                                    value={department.department_id}
+                                                >
+                                                    {department.department_name}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+
+                                    <div className="employee-form-field">
+                                        <label htmlFor="employee-salary">
+                                            Salary
+                                        </label>
+                                        <input
+                                            id="employee-salary"
+                                            type="number"
+                                            min="0"
+                                            step="0.01"
+                                            value={employeeForm.salary}
+                                            onChange={(event) =>
+                                                setEmployeeForm((previous) => ({
+                                                    ...previous,
+                                                    salary: event.target.value
+                                                }))
+                                            }
+                                            required
+                                        />
+                                    </div>
+
+                                    <div className="employee-form-field">
+                                        <label htmlFor="employee-joining-date">
+                                            Joining Date
+                                        </label>
+                                        <input
+                                            id="employee-joining-date"
+                                            type="date"
+                                            value={employeeForm.joining_date}
+                                            onChange={(event) =>
+                                                setEmployeeForm((previous) => ({
+                                                    ...previous,
+                                                    joining_date: event.target.value
+                                                }))
+                                            }
+                                            required
+                                        />
+                                    </div>
+
+                                    <div className="employee-form-actions">
+                                        <button
+                                            type="button"
+                                            className="employee-cancel-button"
+                                            onClick={() => setShowEmployeeForm(false)}
+                                            disabled={savingEmployee}
+                                        >
+                                            Cancel
+                                        </button>
+
+                                        <button
+                                            type="submit"
+                                            className="employee-save-button"
+                                            disabled={savingEmployee}
+                                        >
+                                            {savingEmployee
+                                                ? "Saving..."
+                                                : editingEmployee
+                                                    ? "Update Employee"
+                                                    : "Add Employee"}
+                                        </button>
+                                    </div>
+                                </form>
+                            </section>
+                        </div>
+                    )}
+                </>
+            );
         }
 
+        if (isAdmin && activePage === "Departments") {
+            return (
+                <PlaceholderPage
+                    title="Departments"
+                    description="View your organization's departments."
+                    message="Department management will be available here."
+                />
+            );
+        }
         return null;
     }
 
@@ -1130,9 +1760,18 @@ export default function Dashboard() {
                                 {isAdmin ? "Administrator" : "Employee"}
                             </span>
                         </div>
+                        
                         <div className="topbar-avatar">
-                            {user.name?.charAt(0).toUpperCase()}
+                            {user.photo ? (
+                                <img
+                                    src={`http://localhost:3000${user.photo}`}
+                                    alt="Profile"
+                                />
+                            ) : (
+                                user.name?.charAt(0).toUpperCase()
+                            )}
                         </div>
+
                     </div>
                 </header>
 

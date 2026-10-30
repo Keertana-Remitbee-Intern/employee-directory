@@ -988,3 +988,266 @@
     justify-content: space-between;
     gap: 14px;
 }
+
+
+.profile-photo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.profile-avatar img,
+.topbar-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-photo-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border: 1px solid var(--dashboard-border);
+    border-radius: 7px;
+    background: #ffffff;
+    color: var(--dashboard-primary-dark);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.profile-photo-button:hover {
+    background: #f0fdfa;
+}
+
+.profile-photo-button:has(input:disabled) {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.photo-success {
+    margin-top: 10px !important;
+    color: #15803d !important;
+    font-size: 13px !important;
+}
+
+.photo-error {
+    margin-top: 10px !important;
+    color: #dc2626 !important;
+    font-size: 13px !important;
+}
+
+.employee-page-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.employee-add-button,
+.employee-save-button {
+    border: none;
+    border-radius: 8px;
+    padding: 11px 18px;
+    background: #347c5e;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.employee-management-card {
+    margin-top: 20px;
+}
+
+.employee-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.employee-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 430px;
+    padding: 0 13px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+}
+
+.employee-search input {
+    width: 100%;
+    height: 42px;
+    border: none;
+    outline: none;
+}
+
+.employee-count {
+    margin-bottom: 12px;
+    color: #777;
+    font-size: 13px;
+}
+
+.employee-name-cell,
+.employee-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.employee-table-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #f5e7e5;
+    color: #c23b2e;
+    font-weight: 600;
+}
+
+.employee-table-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.employee-edit-button,
+.employee-delete-button {
+    padding: 7px 11px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+}
+
+.employee-edit-button {
+    color: #2563eb;
+}
+
+.employee-delete-button {
+    color: #dc2626;
+}
+
+.employee-alert {
+    margin: 12px 0;
+    padding: 11px 14px;
+    border-radius: 7px;
+    font-size: 13px;
+}
+
+.employee-alert-success {
+    background: #ecfdf3;
+    color: #15803d;
+}
+
+.employee-alert-error {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.employee-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.employee-modal {
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 26px;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.employee-modal-heading {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.employee-modal-heading h2 {
+    margin: 0 0 6px;
+    font-size: 21px;
+}
+
+.employee-modal-heading p {
+    margin: 0;
+    color: #777;
+    font-size: 13px;
+}
+
+.employee-modal-close {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.employee-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 17px;
+}
+
+.employee-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.employee-form-field label {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.employee-form-field input,
+.employee-form-field select {
+    width: 100%;
+    height: 42px;
+    padding: 0 11px;
+    border: 1px solid #dedede;
+    border-radius: 7px;
+    outline: none;
+    background: white;
+}
+
+.employee-form-field input:focus,
+.employee-form-field select:focus {
+    border-color: #c23b2e;
+}
+
+.employee-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    grid-column: 1 / -1;
+    margin-top: 10px;
+}
+
+.employee-cancel-button {
+    padding: 10px 16px;
+    border: 1px solid #dedede;
+    border-radius: 7px;
+    background: white;
+    cursor: pointer;
+}

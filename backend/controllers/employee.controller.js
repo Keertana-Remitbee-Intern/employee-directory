@@ -1,11 +1,15 @@
 const employeeService = require("../services/employee.service");
 const logger = require("../middleware/logger.middleware");
-
+  
 const sanitizeEmployee = (employee) => ({
     id: employee.id,
+    employee_id: employee.employee_id,
     name: employee.name,
     email: employee.email,
     department: employee.department,
+    department_id: employee.department_id,
+    salary: employee.salary,
+    joining_date: employee.joining_date,
     role: employee.role,
     photo: employee.photo
 });

@@ -3,6 +3,8 @@ const authController = require( "../controllers/auth.controller");
 const {signupValidator,loginValidator} = require("../validators/auth.validator");
 const validate = require("../middleware/validation.middleware");
 const router = express.Router();
+const { authenticate } = require("../middleware/auth.middleware");
+const upload = require("../middleware/upload.middleware");
 
 /**
  * @swagger
@@ -65,6 +67,13 @@ router.post(
     loginValidator,
     validate,
     authController.login
+);
+
+router.post(
+    "/profile/photo",
+    authenticate,
+    upload.single("photo"),
+    authController.uploadProfilePhoto
 );
 
 module.exports = router;

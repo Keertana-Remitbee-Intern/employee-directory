@@ -52,10 +52,8 @@ exports.getSummary = async (req, res, next) => {
             recentLeaves
         ] = await Promise.all([
             isAdmin ? Employee.count() : Promise.resolve(0),
-
             isAdmin ? Department.count() : Promise.resolve(0),
 
-            // All requests are used for accurate summary counts.
             LeaveRequest.findAll({
                 where: employeeWhere
             }),
